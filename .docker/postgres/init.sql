@@ -1,0 +1,68 @@
+CREATE TYPE TARJA AS ENUM (
+    'Preta',
+    'Vermelha',
+    'Vermelha sob restrição',
+    'Sem tarja'
+);
+CREATE TYPE LISTA_CTRIBUTARIO AS ENUM ('POSITIVA', 'NEGATIVA', 'NEUTRA');
+CREATE TYPE ANALISE_RECURSAL AS ENUM (
+    'AR',
+    '1',
+    '2',
+    '3',
+    '5',
+    '8',
+    '9'
+);
+CREATE TABLE medicamentos (
+    id SERIAL PRIMARY KEY,
+    principio_ativo VARCHAR NOT NULL,
+    cnpj VARCHAR NOT NULL,
+    laboratorio VARCHAR NOT NULL,
+    ggrem VARCHAR NOT NULL,
+    registro VARCHAR,
+    ean1 VARCHAR NOT NULL,
+    ean2 VARCHAR,
+    ean3 VARCHAR,
+    produto VARCHAR NOT NULL,
+    apresentacao VARCHAR NOT NULL,
+    classe_terapeutica VARCHAR NOT NULL,
+    tipo_produto VARCHAR,
+    regime_preco VARCHAR NOT NULL,
+    pf_sem_impostos NUMERIC NOT NULL,
+    pf_0 NUMERIC,
+    pf_12 NUMERIC,
+    pf_17 NUMERIC,
+    pf_17_alc NUMERIC,
+    pf_17_5 NUMERIC,
+    pf_17_5_alc NUMERIC,
+    pf_18 NUMERIC,
+    pf_18_alc NUMERIC,
+    pf_19 NUMERIC,
+    pf_20 NUMERIC,
+    pf_21 NUMERIC,
+    pf_22 NUMERIC,
+    pmvg_sem_impostos NUMERIC,
+    pmvg_0 NUMERIC,
+    pmvg_12 NUMERIC,
+    pmvg_17 NUMERIC,
+    pmvg_17_alc NUMERIC,
+    pmvg_17_5 NUMERIC,
+    pmvg_17_5_alc NUMERIC,
+    pmvg_18 NUMERIC,
+    pmvg_18_alc NUMERIC,
+    pmvg_19 NUMERIC,
+    pmvg_20 NUMERIC,
+    pmvg_21 NUMERIC,
+    pmvg_22 NUMERIC,
+    restricao_hospitalar BOOLEAN NOT NULL,
+    cap BOOLEAN NOT NULL,
+    confaz_87 BOOLEAN NOT NULL,
+    icms_0 BOOLEAN NOT NULL,
+    analise_recursal ANALISE_RECURSAL,
+    lista_ctributario LISTA_CTRIBUTARIO NOT NULL,
+    comercializacao BOOLEAN NOT NULL,
+    tarja TARJA
+);
+COPY medicamentos
+FROM '/medicamentos.csv' DELIMITER E'\t' CSV HEADER;
