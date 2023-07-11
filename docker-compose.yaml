@@ -1,35 +1,47 @@
 version: '3'
 
 services:
-  db:
+  database:
     build: .docker/postgres
     environment:
       POSTGRES_DB: promaxima
       POSTGRES_USER: promaxima
-      POSTGRES_PASSWORD: 0kTpAC3%l9!M$W5q
-      POSTGRES_HOST: db
+      POSTGRES_PASSWORD: 0kTpAC3%l9!M
+      POSTGRES_HOST: database
       POSTGRES_PORT: 5432
     ports:
       - "5432:5432"
     volumes:
       - ./db/data:/var/lib/postgresql/data
 
-  django:
+  backend:
     build:
       context: .
-      dockerfile: .docker/django/Dockerfile
+      dockerfile: .docker/backend/Dockerfile
     command: >
       sh -c "python manage.py migrate &&
              python manage.py runserver 0.0.0.0:8000"
     environment:
       POSTGRES_NAME: promaxima
       POSTGRES_USER: promaxima
-      POSTGRES_PASSWORD: 0kTpAC3%l9!M$W5q
-      POSTGRES_HOST: db
+      POSTGRES_PASSWORD: 0kTpAC3%l9!M
+      POSTGRES_HOST: database
       POSTGRES_PORT: 5432
     ports:
       - "8000:8000"
     volumes:
-      - ./src:/code
+      - ./backend:/code/backend
     depends_on:
-      - db
+      - database
+
+  frontend:
+    build:
+      context: .
+      dockerfile: .docker/frontend/Dockerfile
+    command: npm run dev --host
+    ports:
+      - '5173:5173'
+    volumes:
+      - ./frontend:/code/frontend
+    depends_on:
+      - backend
