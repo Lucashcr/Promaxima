@@ -1,6 +1,6 @@
 <script setup>
 
-import { ref, computed } from 'vue';
+import { ref } from 'vue';
 
 import ListMedicines from "./ListMedicines.vue";
 
@@ -181,15 +181,14 @@ function toggleFilterIcon() {
 <template>
     <div id="MedicinesDashboard">
         <button @click="toggleFilterIcon()">
-            <i class="fa fa-filter" :color="filterIconColor"></i>
+            <i class="fa fa-filter"></i>
         </button>
         <div id="FilterForm">
             <h2>Filtrar por: </h2>
             <div class="FilterSet" v-for="info in filterSelectInfo" :key="info.id">
                 <input type="checkbox" :name="info.id.concat('_cbx')" v-model="info.isChecked">
                 <label :for="info.id.concat('_cbx')">{{ info.text }}</label>
-                <select v-if="info.type == 'select'" :disabled="!info.isChecked" v-model="info.currentValue"
-                    @change="console.log(info.currentValue)">
+                <select v-if="info.type == 'select'" :disabled="!info.isChecked" v-model="info.currentValue">
                     <option v-for="val in info.values" :key="val">{{ val }}</option>
                 </select>
                 <input v-else type="text" v-model="info.currentValue" :disabled="!info.isChecked">
@@ -211,7 +210,7 @@ function toggleFilterIcon() {
     visibility: hidden;
 }
 
-i {
+#MedicinesDashboard>button>i {
     visibility: visible;
     position: fixed;
     z-index: 999;
@@ -231,13 +230,15 @@ i {
     flex-direction: column;
     align-items: center;
 
-    height: 100vh;
+    height: calc(100vh - 100px);
     padding: 50px;
 
     background-color: lightsteelblue;
     color: darkslategrey;
 
     visibility: hidden;
+    overflow-y: scroll;
+    overflow-anchor: none;
 }
 
 #FilterForm .FilterSet {

@@ -2,13 +2,12 @@
 import Medicine from './Medicine.vue';
 
 const { result } = defineProps({
-    result: Array,
-    filterSelectInfo: Array
+    result: Array
 });
 </script>
 
 <template>
-    <div class="ListMedicine">
+    <div id="ListMedicine">
         <h1>Lista Filtrada</h1>
         <div v-if="result.length">
             <p>Quantidade de itens: {{ result.length }}</p>
@@ -19,8 +18,13 @@ const { result } = defineProps({
 </template>
 
 <style scoped>
-.ListMedicine {
-    min-width: 900px;
+#ListMedicine {
+    min-width: 1200px;
+}
+
+#ListMedicine h1,
+#ListMedicine p {
+    text-align: left;
 }
 </style>
 
