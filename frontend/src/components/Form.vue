@@ -21,7 +21,6 @@ function getFilterValues(filterBy) {
     const values = new Set(
         data.map(item => fillBlankValues(item[filterBy]))
     );
-    console.log(filterBy, "size:", values.size);
     return Array.from(values).sort();
 }
 
