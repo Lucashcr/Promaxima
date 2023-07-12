@@ -166,10 +166,10 @@ const getFilteredData = () => {
 </script>
 
 <template>
-    <div class="container">
-        <div class="filterForm">
+    <div class="MedicinesDashboard">
+        <div class="FilterForm">
             <h2>Filtrar por: </h2>
-            <div class="filterSet" v-for="info in filterSelectInfo" :key="info.id">
+            <div class="FilterSet" v-for="info in filterSelectInfo" :key="info.id">
                 <input type="checkbox" :name="info.id.concat('_cbx')" v-model="info.isChecked">
                 <label :for="info.id.concat('_cbx')">{{ info.text }}</label>
                 <select v-if="info.type == 'select'" :disabled="!info.isChecked" v-model="info.currentValue"
@@ -185,13 +185,13 @@ const getFilteredData = () => {
 </template>
 
 <style scoped>
-.container {
+.MedicinesDashboard {
     display: flex;
     align-items: center;
     justify-content: space-evenly;
 }
 
-.filterForm {
+.FilterForm {
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -204,32 +204,32 @@ const getFilteredData = () => {
     color: darkslategrey;
 }
 
-.filterForm .filterSet {
+.FilterForm .FilterSet {
     width: 300px;
     display: grid;
 }
 
-.filterForm .filterSet input[type="checkbox"] {
+.FilterForm .FilterSet input[type="checkbox"] {
     width: fit-content;
     grid-row: 1;
     grid-column: 1;
 }
 
-.filterForm .filterSet label {
+.FilterForm .FilterSet label {
     width: 275px;
     text-align: left;
     grid-row: 1;
     grid-column: 2;
 }
 
-.filterForm .filterSet select,
-.filterForm .filterSet input[type="text"] {
+.FilterForm .FilterSet select,
+.FilterForm .FilterSet input[type="text"] {
     grid-row: 2;
     grid-column-start: 1;
     grid-column-end: 3;
 }
 
-.filterForm button {
+.FilterForm button {
     margin-top: 20px;
 }
 </style>

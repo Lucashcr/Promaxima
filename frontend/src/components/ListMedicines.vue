@@ -1,4 +1,6 @@
 <script setup>
+import Medicine from './Medicine.vue';
+
 const { result } = defineProps({
     result: Array,
     filterSelectInfo: Array
@@ -6,19 +8,18 @@ const { result } = defineProps({
 </script>
 
 <template>
-    <div class="container">
-
-        <ul v-if="result.length">
-            <li v-for="item in result.slice(0, 30)" :key="item.id">
-                {{ item.principio_ativo }}
-            </li>
-        </ul>
+    <div class="ListMedicine">
+        <h1>Lista Filtrada</h1>
+        <div v-if="result.length">
+            <p>Quantidade de itens: {{ result.length }}</p>
+            <Medicine v-for="item in result.slice(0, 20)" :data="item" />
+        </div>
         <p v-else>Nenhum resultado encontrado</p>
     </div>
 </template>
 
 <style scoped>
-.container {
+.ListMedicine {
     min-width: 900px;
 }
 </style>
