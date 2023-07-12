@@ -164,7 +164,7 @@ const getFilteredData = () => {
     return result;
 };
 
-const filterIconColor = ref("");
+
 function toggleFilterIcon() {
     const filterForm = document.getElementById("FilterForm");
     const filterIcon = document.querySelector("#MedicinesDashboard > button > i");
@@ -173,7 +173,7 @@ function toggleFilterIcon() {
         filterIcon.style.color = "#E3E3E3";
     } else {
         filterForm.style.visibility = "visible";
-        filterIcon.style.color = "#242424";
+        filterIcon.style.color = "#3B3B3B";
     }
 }
 </script>
@@ -207,14 +207,19 @@ function toggleFilterIcon() {
     justify-content: space-evenly;
 }
 
+#MedicinesDashboard>button {
+    visibility: hidden;
+}
+
 i {
+    visibility: visible;
     position: fixed;
     z-index: 999;
     top: 0;
     left: 0;
     padding: 15px;
     font-size: 50px;
-    color: antiquewhite;
+    color: #E3E3E3;
 }
 
 #FilterForm {
