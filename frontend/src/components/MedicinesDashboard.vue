@@ -163,11 +163,27 @@ const getFilteredData = () => {
     }
     return result;
 };
+
+const filterIconColor = ref("");
+function toggleFilterIcon() {
+    const filterForm = document.getElementById("FilterForm");
+    const filterIcon = document.querySelector("#MedicinesDashboard > button > i");
+    if (filterForm.style.visibility == "visible") {
+        filterForm.style.visibility = "hidden";
+        filterIcon.style.color = "#E3E3E3";
+    } else {
+        filterForm.style.visibility = "visible";
+        filterIcon.style.color = "#242424";
+    }
+}
 </script>
 
 <template>
-    <div class="MedicinesDashboard">
-        <div class="FilterForm">
+    <div id="MedicinesDashboard">
+        <button @click="toggleFilterIcon()">
+            <i class="fa fa-filter" :color="filterIconColor"></i>
+        </button>
+        <div id="FilterForm">
             <h2>Filtrar por: </h2>
             <div class="FilterSet" v-for="info in filterSelectInfo" :key="info.id">
                 <input type="checkbox" :name="info.id.concat('_cbx')" v-model="info.isChecked">
@@ -185,51 +201,66 @@ const getFilteredData = () => {
 </template>
 
 <style scoped>
-.MedicinesDashboard {
+#MedicinesDashboard {
     display: flex;
     align-items: center;
     justify-content: space-evenly;
 }
 
-.FilterForm {
+i {
+    position: fixed;
+    z-index: 999;
+    top: 0;
+    left: 0;
+    padding: 15px;
+    font-size: 50px;
+    color: antiquewhite;
+}
+
+#FilterForm {
+    position: fixed;
+    top: 0;
+    left: 0;
+
     display: flex;
     flex-direction: column;
     align-items: center;
 
-    margin: 5px 0;
-    padding: 20px;
-    border-radius: 20px;
+    height: 100vh;
+    padding: 50px;
 
     background-color: lightsteelblue;
     color: darkslategrey;
+
+    visibility: hidden;
 }
 
-.FilterForm .FilterSet {
+#FilterForm .FilterSet {
     width: 300px;
     display: grid;
 }
 
-.FilterForm .FilterSet input[type="checkbox"] {
+#FilterForm .FilterSet input[type="checkbox"] {
     width: fit-content;
     grid-row: 1;
     grid-column: 1;
 }
 
-.FilterForm .FilterSet label {
+#FilterForm .FilterSet label {
     width: 275px;
     text-align: left;
     grid-row: 1;
     grid-column: 2;
 }
 
-.FilterForm .FilterSet select,
-.FilterForm .FilterSet input[type="text"] {
+#FilterForm .FilterSet select,
+#FilterForm .FilterSet input[type="text"] {
     grid-row: 2;
     grid-column-start: 1;
     grid-column-end: 3;
 }
 
-.FilterForm button {
+#FilterForm button {
     margin-top: 20px;
 }
 </style>
