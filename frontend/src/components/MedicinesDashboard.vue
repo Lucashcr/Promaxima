@@ -201,9 +201,8 @@ function toggleFilterIcon() {
 
 <style scoped>
 #MedicinesDashboard {
-    display: flex;
-    align-items: center;
-    justify-content: space-evenly;
+    width: calc(100vw - 50px);
+    margin: 0 auto;
 }
 
 #MedicinesDashboard>button {

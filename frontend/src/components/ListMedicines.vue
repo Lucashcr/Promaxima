@@ -19,7 +19,8 @@ const { result } = defineProps({
 
 <style scoped>
 #ListMedicine {
-    min-width: 1200px;
+    width: 1200px;
+    margin: 0 auto;
 }
 
 #ListMedicine h1,

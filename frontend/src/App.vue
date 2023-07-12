@@ -24,15 +24,6 @@ fetch("http://localhost:8000/medicamentos/")
   </main>
 </template>
 
-<style scoped>
-main {
-  display: flex;
-  align-items: center;
-  justify-content: space-evenly;
-  min-height: 100vh;
-}
-</style>
-
 <script>
 export default {
   name: "App"
