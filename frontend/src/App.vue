@@ -1,9 +1,8 @@
 <script setup>
 
-import Form from './components/Form.vue';
-import MyTable from './components/MyTable.vue';
-
 import { ref } from 'vue'
+
+import MedicinesDashboard from "./components/MedicinesDashboard.vue";
 
 const data = ref([]);
 
@@ -13,13 +12,29 @@ fetch("http://localhost:8000/medicamentos/")
     data.value = result;
   })
   .catch(error => console.log(error));
+
 </script>
 
 <template>
   <main v-if="data.length">
-    <Form :data=data />
+    <MedicinesDashboard :data=data />
   </main>
   <main v-else>
     <p>Carregando dados...</p>
   </main>
 </template>
+
+<style scoped>
+main {
+  display: flex;
+  align-items: center;
+  justify-content: space-evenly;
+  min-height: 100vh;
+}
+</style>
+
+<script>
+export default {
+  name: "App"
+}
+</script>
